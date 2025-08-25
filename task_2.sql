@@ -1,11 +1,10 @@
 -- Create tables for alx_book_store database
 USE alx_book_store;
 
--- Create authors table
-CREATE TABLE authors (
+-- Create Authors table
+CREATE TABLE Authors (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    author_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
     birth_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -21,7 +20,7 @@ CREATE TABLE books (
     price DECIMAL(10, 2) NOT NULL,
     stock_quantity INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- Create customers table
