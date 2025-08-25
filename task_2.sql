@@ -10,8 +10,8 @@ CREATE TABLE Authors (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create books table
-CREATE TABLE books (
+-- Create Books table
+CREATE TABLE Books (
     book_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     author_id INT,
@@ -24,7 +24,7 @@ CREATE TABLE books (
 );
 
 -- Create customers table
-CREATE TABLE customers (
+CREATE TABLE Customers (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -35,22 +35,22 @@ CREATE TABLE customers (
 );
 
 -- Create orders table
-CREATE TABLE orders (
+CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total_amount DECIMAL(10, 2) NOT NULL,
     status ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
 -- Create order_details table
-CREATE TABLE order_details (
+CREATE TABLE Order_details (
     order_detail_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     book_id INT,
     quantity INT NOT NULL,
     unit_price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
